@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,13 +15,25 @@
 
 		<!-- Load Font Awesome 5 (free) icons -->
 		<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+		<!-- include d3.js v5 -->
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script src="https://d3js.org/d3-array.v2.min.js"></script>
+		<script src="https://d3js.org/d3-time.v1.min.js"></script>
+		<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+
+		<!-- Custom JS and CSS-->
+		<script src="../js/viz1.js"></script>
+		<link href="../css/viz1.css" rel="stylesheet" type="text/css">
+
+
 	</head>
 
 	<body>
 
 		<!-- Page header -->
 		<!-- https://bulma.io/documentation/layout/hero/ -->
-		<section class="hero is-info is-bold">
+		<section class="hero is-primary is-bold">
 			<div class="hero-body">
 				<div class="container">
 					<!-- TODO: Change title -->
@@ -38,7 +52,12 @@
 				<div class="navbar-brand">
 					<!-- TODO: Change link to repository homepage if needed -->
 					<!-- TODO: Change which navbar-item is-active if needed -->
-					<a class="navbar-item is-active" href="https://usf-cs360-spring2020.github.io/web-icgranger9/">
+					<a class="navbar-item is-active" href="../index.html">
+						<span class="icon"><i class="fas fa-caret-left"></i></span>
+						<span>Overview</span>
+					</a>
+
+					<a class="navbar-item" href="https://usf-cs360-spring2020.github.io/web-icgranger9/">
 						<span class="icon"><i class="fas fa-home"></i></span>
 						<span>Home</span>
 					</a>
@@ -61,11 +80,11 @@
 							</a>
 
 							<div class="navbar-dropdown">
-								<a class="navbar-item" href="./pages/viz1.html">
+								<a class="navbar-item" href="./viz1.html">
 									<span class="icon"><i class="fas fa-chart-line"></i></span>
 									<span>Parallel Coordinates</span>
 								</a>
-								
+
 							</div>
 						</div>
 					</div>
@@ -73,11 +92,6 @@
 					<!-- Right navbar items -->
 					<div class="navbar-end">
 						<!-- TODO: Update as needed -->
-						<a class="navbar-item" href="#about" title="About">
-							<span class="icon"><i class="fas fa-tasks"></i></span>
-							<span>Grade</span>
-						</a>
-
 						<a class="navbar-item" href="#about" title="About">
 							<span class="icon"><i class="fas fa-info-circle"></i></span>
 							<span>About</span>
@@ -94,88 +108,43 @@
 				<div class="content">
 					<h1 class="title">
 						<!-- TODO: Change page title -->
-						Overview
+						Visualization 1
 					</h1>
-
-					<p>This is the home page for my homework 1 prototypes and implementations. For this project, the base requirements were to prototype three different visualizations, which I have done. Beyond that, I was able to fully implement <b>one</b> of them in D3. My inspiration for this project was to prototype visualizations that I thought were unique, and would stand out a little. I believe I was able to achieve this goal. In particular, I am very proud of my third implementation which is a type of bubble chart.</p>
-
-
-					<h2 id="visualizations">Visualizations</h2>
-
-					<p>To view each visualization, please go the it's page. They are linked below, as well as from the navigation bar on each page.</p>
-
-					<p class="buttons">
-						<a class="button is-large is-success" href="./pages/viz1.html">
-							<span class="icon is-medium">
-								<i class="fas fa-chart-bar"></i>
-							</span>
-							<span>Bar Chart</span>
-						</a>
-
-						<a class="button is-large is-warning" href="./pages/viz2.html">
-							<span class="icon is-medium">
-								<i class="fas fa-chart-line"></i>
-							</span>
-							<span>Scatter Plot</span>
-						</a>
-
-						<a class="button is-large is-danger" href="./pages/viz3.html">
-							<span class="icon is-medium">
-								<i class="fas fa-circle"></i>
-							</span>
-							<span>Bubble Chart</span>
-						</a>
-
+					<p class="subtitle">
+						<!-- TODO: Change page subtitle -->
+						A bar chart for SFO's monthly passenger count
 					</p>
 
-					<h4>Instructions</h4>
+					<p> For this visualization, I used a bar chart to show the passenger count for flights to and from SFO for each month in 2019. The data points used in this visualization were "Activity Period", "Passenger Count", and "GEO Summary". The x-axis uses activity period to show the breakdown of passengers for each given month, and the y-axis shows passenger count, to give an idea of how many people flew that month. Beyond that, GEO summary was used to show weather the passengers were foreign or domestic. For a more detailed breakdown of how each attribute looks in the raw data, please refer to the data section</p>
 
-					<p>Follow the links above to see my implementations.</p>
+					<h2 id="data">Data</h2>
+
+					<p>This data set is composed of air passenger statistics, retrieved from <a href="https://datasf.org/opendata/">DataSF</a>. Using their website, I was able to filter down to only the information that is relevant to this visualization, which is:</p>
 
 
-					<h2 id="grade">Grade</h2>
+					<ul>
+						<li><strong>Activity Period:</strong> The year and month that this data is from. It was given in the format "YYYYMM", with four digits for the year, and two for the month. In my implementation, I considered converting this basic information into a more complex date type, however this turned out to not be necessary, as once they were converting into integers, they could easily be sorted into their proper order. </li>
 
-					<!-- TODO: Remove custom style if no longer needed -->
-					<style>
-						table.grades tbody tr td:nth-child(1),
-						table.grades tbody tr td:nth-child(2) {
-							text-align: center;
-						}
-					</style>
+						<li><strong>GEO Summary:</strong> This indicates what type of flight it was, either "Domestic" or "International". This was used in visualizing the difference in amount domestic vs international passengers. </li>
 
-					<!-- TODO: Change or remove table -->
-					<!-- https://bulma.io/documentation/elements/table/ -->
-					<table class="table is-hoverable is-bordered grades">
-						<thead>
-							<tr>
-								<th>Letter</th>
-								<th>Done?</th>
-								<th>Description</th>
-							</tr>
-						</thead>
+						<li><strong>Passenger Count:</strong> This value was a summation of all the passengers for the given flight type and activity period. I was able to do this summation on dataSF's website, which drastically reduced the amount of data I had to manage. </li>
 
-						<tbody>
+					</ul>
 
-							<tr>
-								<td>C</td>
-								<td><i class="has-text-success fas fa-check-circle"></i></td>
-								<td>This grade was achieved because I was able to create 3 visualizations in tableau</td>
-							</tr>
+					<h2 id="visualizations">Prototype</h2>
 
-							<tr>
-								<td>B</td>
-								<td><i class="has-text-success far fa-check-circle"></i></td>
-								<td>This grade was achieved because I was able to implement the first visualization in D3 (the bar chart).</td>
-							</tr>
+					<img class="" src="../resources/viz1.png">
+					<p>This prototype was done in Tableau</p>
 
-							<tr>
-								<td>A</td>
-								<td><i class="has-text-danger fas fa-times-circle"></i></td>
-								<td>This grade was not fully achieved, as I was not able to fully implement the second visualization in D3 (the scatter plot).</td>
-							</tr>
-						</tbody>
 
-					</table>
+					<h2 id="visualizations">D3 Implementation</h2>
+
+					<h3>SFO Monthly Passenger Count</h3>
+					<svg id="viz"></svg>
+					<svg id="legend"></svg>
+					<p>Created by: Ian Granger<br>
+					Data source: <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg</a> </p>
+
 
 					<h2 id="about">About</h2>
 
@@ -235,8 +204,8 @@
 				</p>
 
 				<p>
-					<!-- TODO: Change to link to your Github repository -->
-					<a href="https://github.com/usf-cs360-spring2020/template-bulma" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
+					<!-- DONE: Change to link to your Github repository -->
+					<a href="https://github.com/usf-cs360-spring2020/homework1-icgranger9" class="button is-small" style="padding-left: 1em; padding-right: 1em;">
 						<i class="fab fa-github-alt"></i>&nbsp;<strong>Github</strong>
 					</a>
 
@@ -255,22 +224,36 @@
 		<!-- Mobile menu responsiveness -->
 		<!-- https://bulma.io/documentation/components/navbar/ -->
 		<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+			document.addEventListener('DOMContentLoaded', () => {
+				const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-			if ($navbarBurgers.length > 0) {
-				$navbarBurgers.forEach( el => {
-					el.addEventListener('click', () => {
-						const target = el.dataset.target;
-						const $target = document.getElementById(target);
-						el.classList.toggle('is-active');
-						$target.classList.toggle('is-active');
+				if ($navbarBurgers.length > 0) {
+					$navbarBurgers.forEach( el => {
+						el.addEventListener('click', () => {
+							const target = el.dataset.target;
+							const $target = document.getElementById(target);
+							el.classList.toggle('is-active');
+							$target.classList.toggle('is-active');
+						});
 					});
-				});
-			}
-		});
+				}
+			});
 		</script>
 		<!-- End mobile menu responsiveness -->
+
+		<!-- Our core javascript -->
+		<script type="text/javascript">
+
+			// creating a global variable to hold our axis and scales
+			let chart = {};
+			let file= "../data/viz1.csv"
+
+			createBarChart(file);
+			createLegend();
+
+
+		</script>
+
 	</body>
 
 </html>

@@ -4,8 +4,8 @@
 
 ![Profile Image](profile.png)
 
-**Name:** Your Name  
-**Email:** <username@dons.usfca.edu>
+**Name:** Ian Granger  
+**Email:** <igranger@dons.usfca.edu>
 
 This is a template website using [Bulma](https://bulma.io/), [FontAwesome](https://origin.fontawesome.com/) for icons, and [Github Pages](). Designed to be modified (including this README file).
 
