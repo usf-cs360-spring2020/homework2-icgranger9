@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,14 +17,10 @@
 		<!-- include d3.js v5 -->
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="https://d3js.org/d3-array.v2.min.js"></script>
-		<script src="https://d3js.org/d3-time.v1.min.js"></script>
-		<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 
 		<!-- Custom JS and CSS-->
 		<script src="../js/viz1.js"></script>
 		<link href="../css/viz1.css" rel="stylesheet" type="text/css">
-
-
 	</head>
 
 	<body>
@@ -53,11 +47,6 @@
 					<!-- TODO: Change link to repository homepage if needed -->
 					<!-- TODO: Change which navbar-item is-active if needed -->
 					<a class="navbar-item is-active" href="../index.html">
-						<span class="icon"><i class="fas fa-caret-left"></i></span>
-						<span>Overview</span>
-					</a>
-
-					<a class="navbar-item" href="https://usf-cs360-spring2020.github.io/web-icgranger9/">
 						<span class="icon"><i class="fas fa-home"></i></span>
 						<span>Home</span>
 					</a>
@@ -73,20 +62,14 @@
 					<!-- Left navbar items -->
 					<div class="navbar-start">
 
-						<!-- TODO: Modify or remove dropdown -->
-						<div class="navbar-item has-dropdown is-hoverable">
-							<a class="navbar-link">
-								Visualizations
-							</a>
 
-							<div class="navbar-dropdown">
-								<a class="navbar-item" href="./viz1.html">
-									<span class="icon"><i class="fas fa-chart-line"></i></span>
-									<span>Parallel Coordinates</span>
-								</a>
 
-							</div>
-						</div>
+
+						<a class="navbar-item" href="#viz">
+							<span class="icon"><i class="fas fa-chart-line"></i></span>
+							<span>Parallel Coordinates</span>
+						</a>
+
 					</div>
 
 					<!-- Right navbar items -->
@@ -96,7 +79,13 @@
 							<span class="icon"><i class="fas fa-info-circle"></i></span>
 							<span>About</span>
 						</a>
+
+						<a class="navbar-item" href="https://usf-cs360-spring2020.github.io/web-icgranger9/">
+							<span class="icon"><i class="fas fa-door-open"></i></span>
+							<span>Personal Site</span>
+						</a>
 					</div>
+
 				</div>
 			</div>
 		</nav>
@@ -133,7 +122,7 @@
 
 					<h2 id="visualizations">Prototype</h2>
 
-					<img class="" src="../resources/viz1.png">
+					<img class="" src="../resources/prototype.png">
 					<p>This prototype was done in Tableau</p>
 
 
@@ -168,7 +157,7 @@
 
 								<!-- TODO: Replace with brief biography -->
 								<p>
-									Hi, My name is Ian Granger, and I am a second year graduate student majoring in computer science, looking forward to graduating at the end of this semester! I have recently moved back to the bay area after four years in New York. In my free time, I like to travel. I am currently interning at Surefyre, an insurance start-up that I’ve been working at for the passt 6 months.
+									Hi, My name is Ian Granger, and I am a second year graduate student majoring in computer science, looking forward to graduating at the end of this semester! I have recently moved back to the bay area after four years in New York. In my free time I like to travel, and visit friends all around the world! I am currently interning at Surefyre, an insurance start-up that I’ve been working at for the past 6 months.
 								</p>
 
 								<!-- TODO: Replace or remove tags -->
@@ -245,10 +234,9 @@
 		<script type="text/javascript">
 
 			// creating a global variable to hold our axis and scales
-			let chart = {};
-			let file= "../data/viz1.csv"
+			let file= "../data/mrc_table2.csv"
 
-			createBarChart(file);
+			createParallelCoords(file);
 			createLegend();
 
 

@@ -1,72 +1,57 @@
-let createBarChart = function(file){
+let createParallelCoords = function(file){
 
-	let parseDate = d3.timeParse("%Y%m");
-
-	// get the data to visualize
+	// Selects only the relevant fields to save
 	d3.csv(file, function(d) {
-		var tmp = {}
+		return {
+			"tier": +d["tier"],
+			"tier_name": d["tier_name"],
+			"k_rank": +d["k_rank"],
+			"k_mean": +d["k_mean"],
+			"par_rank": +d["par_rank"],
+			"par_mean": +d["par_mean"],
+		};
 
-		tmp["period"] = d["Activity Period"];
-		tmp["geo_summary"] = d["GEO Summary"];
-		tmp["count"] = 	+d["Passenger Count"];
-
-		return tmp;
-
-	}).then(function(rawData) {
-
-		// Convert the data to a more manageable format
-		let data = cleanData(rawData);
+	}).then(function(data) {
 
 		console.log(data);
-		drawEntireChart(data);
+		drawEverything(data);
 	});
 }
 
-let cleanData = function(rawData) {
-	let tmp = {}
 
-	// gets data into dict with key being the period, and the val being a dict of international and domestic count
-	for (var d of rawData){
-		if (d.period in tmp) {
-			tmp[d.period][d.geo_summary.toLowerCase()] = d.count;
-		}
-		else {
-			var dct = {}
-			dct[d.geo_summary.toLowerCase()] = d.count
-			tmp[d.period] = dct;
-		}
- 
-	}
+let drawEverything = function(data) {
 
-	//gets the data into a list of dicts
-	let data = []
-	for (key in tmp) {
-		let val = tmp[key]
-		val["period"] = key
-		data.push(val)
-	}
-
-	return data
-}
-
-/*
- * our massive function to draw a bar chart. note some stuff in here
- * is bonus material (for transitions and updating the text)
- */
-let drawEntireChart = function(data) {
-
+	// First, let's create some constants for use latter 
 	const margin = {
 		top:	30,
 		right:	35, 
 		bottom: 60, // leave space for x-axis
 		left:	75	// leave space for y-axis
 	};
-
-	// Draw legend
 	
 	// get the svg to draw on
 	let svg = d3.select("body").select("svg#viz");
 	console.assert(svg.size() == 1);
+
+
+	// Now, let's call the key functions that actually do everything 
+	drawAxes()
+	drawLines()
+	drawLegend()
+
+	// Finally, we need to actually implement those functions
+
+	function drawAxes() {
+		console.log("In draw axes")
+	}
+
+	function drawLines () {
+		console.log("In draw lines")
+	}
+
+	function drawLegend () {
+		console.log("In draw legend")
+	}
 
 	// Draw axes
 	//calculate the min and max of our data
