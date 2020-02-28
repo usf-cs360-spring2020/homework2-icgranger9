@@ -25,27 +25,14 @@ textarea {
   border-radius: 10px;
 }
 
-svg#viz {
-  /* bl.ocks.org defaults to 960px by 500px */
-  width: 960px;
-  height: 500px;
+/*svg#viz {
 
-  background-color: white;
-}
-
-svg#legend {
-  /* Just copying the size of the legend in tableau */
-  width: 160px;
-  height: 500px;
-
-  background-color: white;
-}
+   Not 100% sure I like this, might remove later 
+  background-color: whitesmoke;
+  border-radius: 10px;
+}*/
 
 /* svg elements are styled differently from html elements */
-
-rect.bar {
-  stroke: none;
-}
 
 .legend-title {
   font-weight: bold;
