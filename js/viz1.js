@@ -191,8 +191,8 @@ let group_tier = function(tier_name) {
 			res = "selective"
 			break;
 
-		case "Nonselective 4-year public":
-		case "Nonselective 4-year private not-for-profit":
+		case "Nonselective four-year public":
+		case "Nonselective four-year private not-for-profit":
 			res = "nonselective";
 			break;
 
@@ -202,7 +202,7 @@ let group_tier = function(tier_name) {
 			break;
 
 		case "Two-year (public and private not-for-profit)":
-		case "Less than two year schools of any type":
+		case "Less than two-year schools of any type":
 			res = "two_year_or_less";
 			break;
 
@@ -212,7 +212,7 @@ let group_tier = function(tier_name) {
 			break;
 
 		default:
-			console.log(`Got invalid tier name, something is very wrong: ${tier_name} `)
+			console.log(`Got invalid tier name, something is very wrong: "${tier_name}" `)
 	}
 
 	return res;
