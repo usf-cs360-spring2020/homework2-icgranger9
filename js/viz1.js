@@ -4,9 +4,9 @@ let createParallelCoords = function(file){
 	d3.csv(file, function(d) {
 		let res = {
 			"par_rank": +d["par_rank"],
-			"par_mean": +d["par_mean"],
+			"par_median": +d["par_median"],
 			// "tier": +d["tier"],
-			"k_mean": +d["k_mean"],
+			"k_median": +d["k_median"],
 			"k_rank": +d["k_rank"],
 		};
 
