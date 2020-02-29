@@ -35,7 +35,7 @@ let drawEverything = function(data) {
 
 	const margin = {
 		top:	30,
-		right:	220, // ~130 for legend, plus a gap between the two
+		right:	220, // ~130 for legend, plus a gap on either side
 		bottom: 20,
 		left:	40
 	};
@@ -44,16 +44,17 @@ let drawEverything = function(data) {
 	const plotHeight = height - margin.top - margin.bottom;
 
 
+	// Get the SVG
 	const svg = d3.select("body").select("svg#viz")
 		.attr("width", width)
 		.attr("height", height);
-
 	console.assert(svg.size() == 1);
 
+	// Create a plot
 	const plot = svg.append("g").attr("id", "plot")
 		.attr("transform", translate(margin.left, margin.top));
 
-	// Axes can't be in a specific function, because they're used by all / multiple.
+	// Axes can't be in a specific function, because they're used by all / multiple. :(
 
 	// Need a different scale for each field
 	const yAxis = {}
@@ -72,7 +73,7 @@ let drawEverything = function(data) {
 		.range([0, plotWidth])
 		.domain(fields);
 
-	// Needs a better Name
+	// Needs a better name
 	const colorScale = d3.scaleOrdinal()
 		.range(d3.schemeYlGnBu[7])
 		.domain(tiers);
@@ -85,7 +86,6 @@ let drawEverything = function(data) {
 	// Finally, we need to actually implement those functions
 	function drawLines (data) {
 		console.log("In draw lines")
-
 
 		let lines = plot.selectAll("line")
 			.data(data);
