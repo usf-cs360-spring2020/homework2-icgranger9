@@ -33,7 +33,7 @@
 					<!-- TODO: Change title -->
 					<h1 class="title">Homework 2</h1>
 					<!-- TODO: Change subtitle -->
-					<h2 class="subtitle">Built to show my visualizations for homework 2</h2>
+					<h2 class="subtitle">Built to show my visualization for homework 2</h2>
 				</div>
 			</div>
 		</section>
@@ -99,40 +99,45 @@
 						<!-- TODO: Change page title -->
 						Parallel Coordinates Visualization
 					</h1>
-					<p class="subtitle">
-						<!-- TODO: Change page subtitle -->
-						A bar chart for SFO's monthly passenger count
-					</p>
 
-					<p> For this visualization, I used a bar chart to show the passenger count for flights to and from SFO for each month in 2019. The data points used in this visualization were "Activity Period", "Passenger Count", and "GEO Summary". The x-axis uses activity period to show the breakdown of passengers for each given month, and the y-axis shows passenger count, to give an idea of how many people flew that month. Beyond that, GEO summary was used to show weather the passengers were foreign or domestic. For a more detailed breakdown of how each attribute looks in the raw data, please refer to the data section</p>
+					<p>For this visualization, I used a parallel coordinates plot to show how closely tied parental income median and rank is to the tier school that their child gets in to, and in turn ho closely related that is to their median income and income rank. Unfortunately, the story that this chart tells is in line with what was expected. Parental income plays a clear role in deciding what tier school the child goes to. However, there is some silver lining. For those lower income students (particularly around the 40 thousand mark), we can see that there is a slight clustering of students who went to higher tier schools, and as such had a higher income after graduating. </p>
+<!-- 
+					<p> For this visualization, I used a bar chart to show the passenger count for flights to and from SFO for each month in 2019. The data points used in this visualization were "Activity Period", "Passenger Count", and "GEO Summary". The x-axis uses activity period to show the breakdown of passengers for each given month, and the y-axis shows passenger count, to give an idea of how many people flew that month. Beyond that, GEO summary was used to show weather the passengers were foreign or domestic. For a more detailed breakdown of how each attribute looks in the raw data, please refer to the data section</p> -->
 
 					<h2 id="data">Data</h2>
 
-					<p>This data set is composed of air passenger statistics, retrieved from <a href="https://datasf.org/opendata/">DataSF</a>. Using their website, I was able to filter down to only the information that is relevant to this visualization, which is:</p>
+					<p>This data set is composed of information from over 30 million college students, from 1993-2013, and was retrieved from <a href="https://opportunityinsights.org/">Opportunity Insights</a>. In D3, I was able to filter down to only the information that is relevant to this visualization, which is:</p>
 
 
 					<ul>
-						<li><strong>Activity Period:</strong> The year and month that this data is from. It was given in the format "YYYYMM", with four digits for the year, and two for the month. In my implementation, I considered converting this basic information into a more complex date type, however this turned out to not be necessary, as once they were converting into integers, they could easily be sorted into their proper order. </li>
+						<li><strong>Parent Rank:</strong> The mean parental income rank, </li>
 
-						<li><strong>GEO Summary:</strong> This indicates what type of flight it was, either "Domestic" or "International". This was used in visualizing the difference in amount domestic vs international passengers. </li>
+						<li><strong>Parent Median:</strong> The median parent household income (rounded to nearest $100). </li>
 
-						<li><strong>Passenger Count:</strong> This value was a summation of all the passengers for the given flight type and activity period. I was able to do this summation on dataSF's website, which drastically reduced the amount of data I had to manage. </li>
+						<li><strong>Child Median:</strong> The median child individual earnings in 2014 (rounded to the nearest $100). </li>
+
+						<li><strong>Child Rank:</strong> The mean child earnings rank. </li>
+
+						<li><strong>College Tier:</strong> For this field, the data provided 14 categories of school, which convey the selectivity and type of college that the child attended. To make distinguishing between these easier, I further grouped them into 7 categories: Elite, Highly Selective, Selective, Non-selective, For Profit, Two Years or Less, and Other. This allowed me to assign a distinct color to each category. The other category represents students that we do not have sufficient data about, as well as those not enrolled in college.</li>
+
 
 					</ul>
 
 					<h2 id="visualizations">Prototype</h2>
 
 					<img class="" src="../resources/prototype.png">
-					<p>This prototype was done in Tableau</p>
+					<p>This prototype was done in RAWGraphs</p>
 
 
 					<h2 id="visualizations">D3 Implementation</h2>
 
-					<h3>HEADER</h3>
+					<!-- Can I Come up with a good header? -->
+					<!-- <h3>HEADER</h3> -->
+
 					<svg id="viz"></svg>
-					<!-- <svg id="legend"></svg> -->
+
 					<p>Created by: Ian Granger<br>
-					Data source: <a href="https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg">https://data.sfgov.org/Transportation/Air-Traffic-Passenger-Statistics/rkru-6vcg</a> </p>
+					Data source: <a href="https://opportunityinsights.org/paper/mobilityreportcards/">https://opportunityinsights.org/paper/mobilityreportcards/</a> </p>
 
 
 					<h2 id="about">About</h2>

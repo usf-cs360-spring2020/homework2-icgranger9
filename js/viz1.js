@@ -5,9 +5,8 @@ let createParallelCoords = function(file){
 		let res = {
 			"par_rank": +d["par_rank"],
 			"par_median": +d["par_median"],
-			// "tier": +d["tier"],
-			"k_median": +d["k_median"],
-			"k_rank": +d["k_rank"],
+			"ch_median": +d["k_median"],
+			"ch_rank": +d["k_rank"],
 		};
 
 		// Groups tiers, for color scale
@@ -29,14 +28,14 @@ let drawEverything = function(data) {
 	
 	const fields = Object.keys(data[0]).filter( item => item != "tier_group");
 
-	const tiers = ["Other", "Two Year or Less", "For Profit", "Non-selective", "Selective", "Highly Selective", "Elite"]
+	const tiers = ["Other", "Two Year or Less", "For Profit", "Non-selective", "Selective", "Highly Selective", "Elite"];
 
-	const width = 1200; //960 for plot, 200 for legend, 40 gap between
+	const width = 1140; // ~960 for viz, ~130 for legend 
 	const height = 500;
 
 	const margin = {
-		top:	40,
-		right:	280, // 240ish for legend, plus a gap between the two
+		top:	30,
+		right:	220, // ~130 for legend, plus a gap between the two
 		bottom: 20,
 		left:	40
 	};
@@ -92,13 +91,12 @@ let drawEverything = function(data) {
 			.data(data);
 
 		lines.enter().append("path")
+			.attr("class","single-line")
 			.attr("d",  function(d) {
 				return d3.line()(fields.map(function(p) {
 				return [xAxis(p), yAxis[p](d[p])];
 			}))})
-			.style("fill", "none")
-			.style("stroke", d => colorScale(d.tier_group))
-			.style("opacity", 0.25);
+			.style("stroke", d => colorScale(d.tier_group));
 
 	}
 
@@ -116,8 +114,8 @@ let drawEverything = function(data) {
 
 
 		axes.enter().append("text")
-			.style("text-anchor", "middle")
-			.attr("transform",  d=> translate(xAxis(d), 0-(margin.top/2)))
+			.attr("class","axis-title")
+			.attr("transform",  d=> translate(xAxis(d), -10))
 			.attr("y", -1)
 			.text(d => d);
 
@@ -127,9 +125,9 @@ let drawEverything = function(data) {
 		console.log("In draw legend")
 
 		// Needed to position the legend
-		let legendX = width - margin.right + 40
+		let legendX = width - margin.right + 60
 
-		// Must make a scale, bot the distance between each legend item
+		// Must make a scale, of the distance between each legend item
 		const legendScale = d3.scalePoint()
 			.range([plotHeight/3, 0])
 			.domain(tiers);
@@ -141,8 +139,6 @@ let drawEverything = function(data) {
 		// legend title
 		legend.append("text")
 			.attr("class","legend-title")
-			.attr("x", 0)
-			.attr("y", 0)
 			.text("College Tier");
 
 		let legendItem = legend.selectAll("x-axis")
@@ -178,37 +174,37 @@ let group_tier = function(tier_name) {
 
 		case "Ivy Plus":
 		case "Other elite schools (public and private)":
-			res = "elite";
+			res = "Elite";
 			break;
 
 		case "Highly selective public":
 		case "Highly selective private":
-			res = "highly_selective";
+			res = "Highly Selective";
 			break;
 
 		case "Selective public":
 		case "Selective private":
-			res = "selective"
+			res = "Selective"
 			break;
 
 		case "Nonselective four-year public":
 		case "Nonselective four-year private not-for-profit":
-			res = "nonselective";
+			res = "Non-selective";
 			break;
 
 		case "Four-year for-profit":
 		case "Two-year for-profit":
-			res = "for_profit";
+			res = "For Profit";
 			break;
 
 		case "Two-year (public and private not-for-profit)":
 		case "Less than two-year schools of any type":
-			res = "two_year_or_less";
+			res = "Two Year or Less";
 			break;
 
 		case "Attending college with insufficient data":
 		case "Not in college between the ages of 19-22":
-			res = "other"; // Should probably have a better name for this
+			res = "Other"; // Should probably have a better name for this
 			break;
 
 		default:

@@ -1,74 +1,31 @@
 /*
- * we use css to style our page and our svg elements
- * the classes/ids defined here must match our d3 code
- */
-
-
-textarea {
-  /* position the textarea on top of the svg */
-  position: fixed;
-  top: 5px;
-  left: 5px;
-
-  margin: 0px;
-  padding: 5px;
-
-  width: 400px;
-  height: 75px;
-
-  /* try changing this color in blockbuilder! */
-  background-color: rgba(255, 255, 255, 0.8);
+svg#viz {
+ 
+	background-color: whitesmoke;
+	border-radius: 10px;
 }
-
-textarea {
-  border: 1px solid gainsboro;
-  border-radius: 10px;
-}
-
-/*svg#viz {
-
-   Not 100% sure I like this, might remove later 
-  background-color: whitesmoke;
-  border-radius: 10px;
-}*/
-
+*/
 /* svg elements are styled differently from html elements */
-
-.legend-title {
-  font-weight: bold;
-  font-size: 10pt;
-}
-
-.legend-squares {
-  border: 1px;
-}
-
-.legend-labels {
-  font-size: 10pt;
+.single-line {
+	fill: none;
+	opacity: .25;
 }
 
 .axis-title {
-  font-weight: bold;
-  fill: black !important;
+	font-weight: bold;
+	text-anchor: middle;
 }
 
-#x-axis text,
-#y-axis text {
-  font-size: 10pt;
-  fill: #888888;
+.legend-title {
+	font-weight: bold;
+	font-size: 10pt;
 }
 
-#x-axis line {
-  /* tick marks */
-  fill: none;
-  stroke: none;
+.legend-squares {
+	stroke: black;
+	stroke-width: 1;
 }
 
-#x-axis path,
-#y-axis path,
-#y-axis line {
-  fill: none;
-
-  stroke: #bbbbbb;
-  stroke-width: 1px;
+.legend-labels {
+	font-size: 10pt;
 }
